@@ -12,197 +12,197 @@ namespace API.Data
             {
                 new Product
                 {
-                    Name = "Angular Speedster Board 2000",
+                    Name = "Ring One", 
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 20000,
-                    PictureUrl = "/images/products/sb-ang1.png",
-                    Brand = "Angular",
+                    PictureUrl = "/images/products/ring-1.jpg",
+                    Brand = "Angie-R Luxury",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Green Angular Board 3000",
+                    Name = "Ring Two",
                     Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
                     Price = 15000,
-                    PictureUrl = "/images/products/sb-ang2.png",
-                    Brand = "Angular",
+                    PictureUrl = "/images/products/ring-2.jpg",
+                    Brand = "Angie-R Luxury",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Core Board Speed Rush 3",
+                    Name = "Ring Three",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
                     Price = 18000,
-                    PictureUrl = "/images/products/sb-core1.png",
-                    Brand = "NetCore",
+                    PictureUrl = "/images/products/ring-3.jpg",
+                    Brand = "Michael Silver",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Net Core Super Board",
+                    Name = "Ring Four",
                     Description =
                         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
                     Price = 30000,
-                    PictureUrl = "/images/products/sb-core2.png",
-                    Brand = "NetCore",
+                    PictureUrl = "/images/products/ring-4.jpg",
+                    Brand = "Michael Silver",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "React Board Super Whizzy Fast",
+                    Name = "Ring Five",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 25000,
-                    PictureUrl = "/images/products/sb-react1.png",
-                    Brand = "React",
+                    PictureUrl = "/images/products/ring-5.jpg",
+                    Brand = "Ashanti",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Typescript Entry Board",
+                    Name = "Ring Six",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 12000,
-                    PictureUrl = "/images/products/sb-ts1.png",
-                    Brand = "TypeScript",
+                    PictureUrl = "/images/products/ring-6.jpg",
+                    Brand = "Louis B. Clement",
                     Type = "Rings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Core Blue Hat",
+                    Name = "Necklace One",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1000,
-                    PictureUrl = "/images/products/hat-core1.png",
-                    Brand = "NetCore",
+                    PictureUrl = "/images/products/necklace-1.jpg",
+                    Brand = "Angie-R Luxury",
                     Type = "Necklaces",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Green React Woolen Hat",
+                    Name = "Necklace Two",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 8000,
-                    PictureUrl = "/images/products/hat-react1.png",
-                    Brand = "React",
+                    PictureUrl = "/images/products/necklace-2.jpg",
+                    Brand = "Michael Silver",
                     Type = "Necklaces",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Purple React Woolen Hat",
+                    Name = "Necklace Three",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1500,
-                    PictureUrl = "/images/products/hat-react2.png",
-                    Brand = "React",
+                    PictureUrl = "/images/products/necklace-3.jpg",
+                    Brand = "Versatile",
                     Type = "Necklaces",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Blue Code Earrings",
+                    Name = "Earrings One",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1800,
-                    PictureUrl = "/images/products/glove-code1.png",
-                    Brand = "VS Code",
+                    PictureUrl = "/images/products/earrings-1.jpg",
+                    Brand = "Michael Silver",
                     Type = "Earrings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Green Code Earrings",
+                    Name = "Earrings Two",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1500,
-                    PictureUrl = "/images/products/glove-code2.png",
-                    Brand = "VS Code",
+                    PictureUrl = "/images/products/earrings-2.jpg",
+                    Brand = "Louis B. Clement",
                     Type = "Earrings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Purple React Earrings",
+                    Name = "Earrings Three",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1600,
-                    PictureUrl = "/images/products/glove-react1.png",
-                    Brand = "React",
+                    PictureUrl = "/images/products/earrings-3.jpg",
+                    Brand = "Louis B. Clement",
                     Type = "Earrings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Green React Earrings",
+                    Name = "Earrings Four",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 1400,
-                    PictureUrl = "/images/products/glove-react2.png",
-                    Brand = "React",
+                    PictureUrl = "/images/products/earrings-4.jpg",
+                    Brand = "Ashanti",
                     Type = "Earrings",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Redis Red Boots",
+                    Name = "Bracelet One",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
                     Price = 25000,
-                    PictureUrl = "/images/products/boot-redis1.png",
-                    Brand = "Redis",
+                    PictureUrl = "/images/products/bracelet-1.jpg",
+                    Brand = "Ashanti",
                     Type = "Bracelets",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Core Red Bracelets",
+                    Name = "Bracelet Two",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
                     Price = 18999,
-                    PictureUrl = "/images/products/boot-core2.png",
-                    Brand = "NetCore",
+                    PictureUrl = "/images/products/bracelet-2.jpg",
+                    Brand = "Versatile",
                     Type = "Bracelets",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Core Purple Bracelets",
+                    Name = "Bracelet Three",
                     Description =
                         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
                     Price = 19999,
-                    PictureUrl = "/images/products/boot-core1.png",
-                    Brand = "NetCore",
+                    PictureUrl = "/images/products/bracelet-3.jpg",
+                    Brand = "Versatile",
                     Type = "Bracelets",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Angular Purple Bracelets",
+                    Name = "Bracelet Four",
                     Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
                     Price = 15000,
-                    PictureUrl = "/images/products/boot-ang2.png",
-                    Brand = "Angular",
+                    PictureUrl = "/images/products/bracelet-4.jpg",
+                    Brand = "Ashanti",
                     Type = "Bracelets",
                     QuantityInStock = 100
                 },
                 new Product
                 {
-                    Name = "Angular Blue Bracelets",
+                    Name = "Bracelet Five",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
                     Price = 18000,
-                    PictureUrl = "/images/products/boot-ang1.png",
-                    Brand = "Angular",
+                    PictureUrl = "/images/products/bracelet-5.jpg",
+                    Brand = "Michael Silver",
                     Type = "Bracelets",
                     QuantityInStock = 100
                 },
