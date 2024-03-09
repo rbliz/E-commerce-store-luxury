@@ -1,8 +1,10 @@
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../app/models/product";
+import agent from "../../app/api/agent";
+import NotFound from "../../app/errors/NotFound";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default function ProductDetails(){
     //useParams to get the details about the route parameters. Below I am using the id, and because it
@@ -12,9 +14,11 @@ export default function ProductDetails(){
     const [product, setProduct] = useState<Product | null>(null)
     const [loading, setLoading] = useState(true)
 
+    // axios has the ability to use an intercepeter. It can intercept requests on the way out of the 
+    // client's browser or on the way back in
     useEffect(()=>{
-        axios.get(`http://localhost:5000/api/products/${id}`)
-            .then(response => setProduct(response.data))
+        id && agent.Catalog.details(parseInt(id)) // defensive code by having the id before using it
+            .then(response => setProduct(response))
             .catch(error => console.log(error))
             .finally(()=> setLoading(false))
     },[id])
@@ -22,11 +26,11 @@ export default function ProductDetails(){
     const tableStyles={
         color: '#fffaff'
     }
-  
+  console.log(product)
 
-    if(loading) return <h3>Loading...</h3>
+    if(loading) return <LoadingComponent message="Loading Product..."/>
 
-    if(!product) return <h3>Product not found</h3>
+    if(!product) return <NotFound />
 
     return(
        <Grid container spacing={6} columns={{xs: 4, sm: 12, md: 12}}>
