@@ -9,8 +9,9 @@ namespace API.Data
         {
         }
 
-        public DbSet<Product> Products { get; set; }
-
+        //the tables
+        public DbSet<Product> Products { get; set; } // Product Entity
+        public DbSet<Basket> Baskets {get; set;} // Basket Entity
     }
 
     
