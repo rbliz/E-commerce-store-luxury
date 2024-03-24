@@ -1,7 +1,8 @@
-import { ShoppingBagRounded, ShoppingCart } from "@mui/icons-material";
+import { ShoppingBagRounded } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
-import { useStoreContext } from "../context/StoreContext";
+// import { useStoreContext } from "../context/StoreContext";
+import { useAppSelector } from "../store/configureStore";
 
 const midLinks = [
     {title: 'catalog', path:'/catalog'},
@@ -28,7 +29,7 @@ const navStyles={
 
 // by using the component prop in the <ListItem> from Material UI I am able to use the NavLink functionality
 export default function Header(){
-    const {basket} = useStoreContext();
+    const {basket} = useAppSelector(state => state.basket);
     const itemCount = basket?.items.reduce((accumulator, currentValue) => accumulator += currentValue.quantity, 0)
 
     return (

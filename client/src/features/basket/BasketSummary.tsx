@@ -1,9 +1,9 @@
 import { TableContainer, Paper, Table, TableBody, TableRow, TableCell, Typography } from "@mui/material";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { currencyFormat } from "../../app/util/util";
+import { useAppSelector } from "../../app/store/configureStore";
 
 export default function BasketSummary() {
-    const {basket} = useStoreContext();
+    const {basket} = useAppSelector(state => state.basket);
     const subtotal = basket?.items.reduce((acc, curr) => {
       return acc += (curr.price * curr.quantity)
     }, 0) ?? 0; // if the function was to return undefined I am giving it a value with ?? 0

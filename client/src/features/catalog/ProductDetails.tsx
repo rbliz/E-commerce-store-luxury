@@ -1,34 +1,31 @@
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../app/models/product";
-import agent from "../../app/api/agent";
 import NotFound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { currencyFormat } from "../../app/util/util";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { LoadingButton } from "@mui/lab";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { addBasketItemAsync, removeBasketItemAsync } from "../basket/basketSlice";
+import { fetchProductAsync, productSelectors } from "./catalogSlice";
 
 export default function ProductDetails(){
     //useParams to get the details about the route parameters. Below I am using the id, and because it
     //comes from the url it is a string
-    const {basket, setBasket, removeItem} = useStoreContext();
+    const {basket, status} = useAppSelector(state => state.basket);
+    const dispatch = useAppDispatch();
     const {id} = useParams<{id: string}>();
-    const [product, setProduct] = useState<Product | null>(null);
-    const [loading, setLoading] = useState(true);
+    const product = useAppSelector(state => productSelectors.selectById(state, parseInt(id!)));
+    const {status: productStatus} = useAppSelector(state => state.catalog); // I have to give another name to the status variable so I can specify status: productStatus
     const [quantity, setQuantity] = useState(0);
-    const [submitting, setSubmitting] = useState(false);
     const item = basket?.items.find(i => i.productId === product?.id); // here I am checking if I already have the product in the basket
 
     // axios has the ability to use an intercepeter. It can intercept requests on the way out of the 
     // client's browser or on the way back in
     useEffect(()=>{
         if(item) setQuantity(item.quantity);
-        id && agent.Catalog.details(parseInt(id)) // defensive code by having the id before using it
-            .then(response => setProduct(response))
-            .catch(error => console.log(error))
-            .finally(()=> setLoading(false))
-    },[id, item])
+        if(!product && id) dispatch(fetchProductAsync(parseInt(id))); // defensive code by having the id before using it
+    },[id, item, dispatch, product])
 
     const tableStyles={
         color: '#fffaff'
@@ -51,24 +48,17 @@ export default function ProductDetails(){
 
     function handleUpdateBasket(){
         if(!product) return;
-        setSubmitting(true);
         if(!item || quantity > item.quantity){
             const updatedQuantity = item ? quantity - item.quantity: quantity;
-            agent.Basket.addItem(product.id, updatedQuantity)
-                .then(basket => setBasket(basket))
-                .catch(error => console.log(error))
-                .finally(()=> setSubmitting(false));
+            dispatch(addBasketItemAsync({productId: product.id, quantity: updatedQuantity}))
         }else{
             const updatedQuantity = item.quantity - quantity;
-            agent.Basket.removeItem(product.id, updatedQuantity)
-                .then(()=> removeItem(product.id, updatedQuantity))
-                .catch(error => console.log(error))
-                .finally(()=> setSubmitting(false));
+            // since the names I am passing do not match the properties in the method I need to specify them in curly brackets with {prop: name}
+            dispatch(removeBasketItemAsync({productId: product.id, quantity: updatedQuantity})) 
         }
     }
 
-
-    if(loading) return <LoadingComponent message="Loading Product..."/>
+    if(productStatus.includes('pending')) return <LoadingComponent message="Loading Product..."/>
 
     if(!product) return <NotFound />
 
@@ -126,7 +116,7 @@ export default function ProductDetails(){
                         {item?.quantity === quantity || !item && quantity === 0?
                             <LoadingButton
                                 disabled={true}
-                                loading={submitting}
+                                loading={status.includes('pending')}
                                 onClick={handleUpdateBasket}
                                 // sx={{height: "55px"}}
                                 sx={disabledStyle}
@@ -138,7 +128,7 @@ export default function ProductDetails(){
                             </LoadingButton>
                         :
                             <LoadingButton
-                                loading={submitting}
+                                loading={status.includes('pending')}
                                 onClick={handleUpdateBasket}
                                 sx={{height: "55px"}}
                                 size="large"
