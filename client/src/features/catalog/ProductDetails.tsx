@@ -103,7 +103,7 @@ export default function ProductDetails(){
                     <Grid item xs={6}>
                             <TextField
                                 onChange={handleInputChange}
-                                sx={{backgroundColor: "#ffd9da"}}
+                                sx={{backgroundColor: "whitesmoke"}}
                                 variant="filled"
                                 type="number"
                                 label="Quantity in Basket"

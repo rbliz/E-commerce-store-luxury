@@ -62,7 +62,7 @@ export default function Header(){
                     ))}
                 </List>
                 <Box display='flex' alignItems='center'>        
-                    <IconButton component={Link} to='/basket' size="large" edge='start' sx={{color:'#fffaff', mr: 2}}>
+                    <IconButton component={Link} to='/basket' size="large" edge='start' sx={navStyles}>
                         <Badge badgeContent={itemCount} color='secondary'>
                             <ShoppingBagRounded />
                         </Badge>

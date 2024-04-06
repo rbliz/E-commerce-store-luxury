@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
+import { PaginatedResponse } from "../models/pagination";
 
 axios.defaults.baseURL = "http://localhost:5000/api/";
 axios.defaults.withCredentials = true; // apart from the allowcredentials() in the api Program() we need this here in the client application to receive and set the cookies
@@ -14,6 +15,11 @@ const responseBody = (response: AxiosResponse) => response.data;
 // thus what comes back from the server.  
 axios.interceptors.response.use(async response =>{
     await sleep();
+    const pagination = response.headers['pagination']; // needs to be in lowerCase even if in the browser is not
+    if(pagination){
+        response.data = new PaginatedResponse(response.data, JSON.parse(pagination));
+        return response; // after setting this I will move to the catalog slice to add a new piece of state to store the metadata
+    }
     return response
 }, (error: AxiosError)=>{
     // checking the status of the error to display a toast in the UI depending on which type of error
@@ -45,17 +51,20 @@ axios.interceptors.response.use(async response =>{
 })
 
 // instantiating  an obj for the different types of requests
+// in the get request I am sending up also a query string with the product parameters. the URLSearchParams needs to be the interface one
 const requests = {
-    get: (url: string) => axios.get(url).then(responseBody),
+    get: (url: string, params?: URLSearchParams) => axios.get(url, {params}).then(responseBody),
     post: (url: string, body:object) => axios.post(url, body).then(responseBody),
     put: (url: string, body:object) => axios.put(url, body).then(responseBody),
     delete: (url: string) => axios.delete(url).then(responseBody),
 }
 
 // instantiating an obj to store requests for the catalog
+// then in list I will take the params as parameters as well
 const Catalog ={
-    list: ()=> requests.get('products'),
-    details: (id: number) => requests.get(`products/${id}`)
+    list: (params: URLSearchParams)=> requests.get('products', params),
+    details: (id: number) => requests.get(`products/${id}`),
+    fetchFilters: () => requests.get('products/filters')
 }
 
 // instantiating an obj to test errors
