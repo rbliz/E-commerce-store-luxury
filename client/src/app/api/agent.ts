@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { PaginatedResponse } from "../models/pagination";
+import { store } from "../store/configureStore";
 
 axios.defaults.baseURL = "http://localhost:5000/api/";
 axios.defaults.withCredentials = true; // apart from the allowcredentials() in the api Program() we need this here in the client application to receive and set the cookies
@@ -10,6 +11,14 @@ const sleep = ()=> new Promise(resolve=> setTimeout(resolve, 400))
 
 // I am creating a helper method to extract data 
 const responseBody = (response: AxiosResponse) => response.data;
+
+// to send up the token with the requests
+axios.interceptors.request.use(config => {
+    const token = store.getState().account.user?.token;
+    if(token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
+
 
 // using interceptors, on the way back from the api or on the way to it. Below I am using the response
 // thus what comes back from the server.  
@@ -83,10 +92,17 @@ const Basket = {
     removeItem: (productId: number, quantity = 1) => requests.delete(`basket?productId=${productId}&quantity=${quantity}`)
 }
 
+const Account = {
+    login: (values:any) => requests.post('account/login', values),
+    register: (values:any) => requests.post('account/register', values),
+    currentUser: () => requests.get('account/currentUser')
+}
+
 const agent = {
     Catalog,
     TestErrors,
-    Basket
+    Basket,
+    Account
 }
 
 export default agent

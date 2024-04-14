@@ -1,6 +1,7 @@
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,11 +29,11 @@ namespace API.Controllers
         [HttpGet(Name = "GetBasket")]
         public async Task<ActionResult<BasketDto>> GetBasket()
         {
-            var basket = await RetrieveBasket();
+            var basket = await RetrieveBasket(GetBuyerId());
 
             if (basket == null) return NotFound();
 
-            return MapBasketToDto(basket);
+            return basket.MapBasketToDto();
         }
 
        
@@ -46,7 +47,7 @@ namespace API.Controllers
         // where it wants to get them from
         public async Task<ActionResult<BasketDto>> AddItemToBasket(int productId, int quantity)
         {
-            var basket = await RetrieveBasket();
+            var basket = await RetrieveBasket(GetBuyerId());
 
             if(basket == null) basket = CreateBasket();
 
@@ -60,7 +61,7 @@ namespace API.Controllers
             
             // we're gonna return the location of the resource. What we put in the location headers is 
             // the location of where to get the basket which contains the newly "posted" resource.
-            if(result) return CreatedAtRoute("GetBasket", MapBasketToDto(basket));
+            if(result) return CreatedAtRoute("GetBasket", basket.MapBasketToDto());
 
             return BadRequest(new ProblemDetails{Title = "Problem saving item to basket"});
         }
@@ -68,7 +69,7 @@ namespace API.Controllers
         [HttpDelete]
         public async Task<ActionResult> RemoveBasketItem(int productId, int quantity)
         {
-            var basket = await RetrieveBasket();
+            var basket = await RetrieveBasket(GetBuyerId());
 
             basket.RemoveItem(productId, quantity);
 
@@ -81,42 +82,39 @@ namespace API.Controllers
 
         // .................................................................................
         // extracted methods
-        private async Task<Basket> RetrieveBasket()
+        private async Task<Basket> RetrieveBasket(string buyerId)
         {
+            if(string.IsNullOrEmpty(buyerId)){
+                Response.Cookies.Delete("buyerId");
+                return null;
+            }
             //this gets the basket with the items with the product info
             return await _context.Baskets
                 .Include(i => i.Items) // this does not include the product info
                 .ThenInclude(p => p.Product)
-                .FirstOrDefaultAsync(x => x.BuyerId == Request.Cookies["buyerId"]); // this does not include the basket items
+                .FirstOrDefaultAsync(x => x.BuyerId == buyerId); // this does not include the basket items
         }
 
+        // this is used to transfer the basket to the user
+        private string GetBuyerId()
+        {
+            return User.Identity?.Name ?? Request.Cookies["buyerId"]; // the ?? means if the expression is false execute what's on its right.
+        }
+
+        // when creating a basket, if the user is not logged in the creation is an anonymous basket
         private Basket CreateBasket()
         {
-            var buyerId = Guid.NewGuid().ToString(); 
-            var cookieOptions = new CookieOptions{IsEssential = true, Expires = DateTime.Now.AddDays(30)};
-            Response.Cookies.Append("buyerId", buyerId, cookieOptions);
+            var buyerId = User.Identity?.Name;
+            if(string.IsNullOrEmpty(buyerId)){
+                buyerId = Guid.NewGuid().ToString(); 
+                var cookieOptions = new CookieOptions{IsEssential = true, Expires = DateTime.Now.AddDays(30)};
+                Response.Cookies.Append("buyerId", buyerId, cookieOptions);
+            }
             var basket = new Basket{BuyerId = buyerId}; // we only need this property because the Id is created by EF and the List of Items is an empty one when a instance of the basket is created
             _context.Baskets.Add(basket); //now EF will start tracking this entity I've created
             return basket;
         }
 
-         private BasketDto MapBasketToDto(Basket basket)
-        {
-            return new BasketDto
-            {
-                Id = basket.Id,
-                BuyerId = basket.BuyerId,
-                Items = basket.Items.Select(item => new BasketItemDto
-                {
-                    ProductId = item.ProductId,
-                    Name = item.Product.Name,
-                    Price = item.Product.Price,
-                    PictureUrl = item.Product.PictureUrl,
-                    Type = item.Product.Type,
-                    Brand = item.Product.Brand,
-                    Quantity = item.Quantity
-                }).ToList()
-            };
-        }
+      
     }
 }

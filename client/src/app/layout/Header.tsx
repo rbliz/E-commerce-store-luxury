@@ -3,6 +3,7 @@ import { AppBar, Badge, Box, IconButton, List, ListItem, Toolbar, Typography } f
 import { Link, NavLink } from "react-router-dom";
 // import { useStoreContext } from "../context/StoreContext";
 import { useAppSelector } from "../store/configureStore";
+import SignedInMenu from "./SignedInMenu";
 
 const midLinks = [
     {title: 'catalog', path:'/catalog'},
@@ -30,6 +31,7 @@ const navStyles={
 // by using the component prop in the <ListItem> from Material UI I am able to use the NavLink functionality
 export default function Header(){
     const {basket} = useAppSelector(state => state.basket);
+    const {user} = useAppSelector(state => state.account);
     const itemCount = basket?.items.reduce((accumulator, currentValue) => accumulator += currentValue.quantity, 0)
 
     return (
@@ -67,8 +69,10 @@ export default function Header(){
                             <ShoppingBagRounded />
                         </Badge>
                     </IconButton>
-
-                    <List sx={{display: 'flex'}}>
+                    {user ? (
+                        <SignedInMenu />
+                    ): (
+                        <List sx={{display: 'flex'}}>
                             {rightLinks.map(({title, path})=>(
                                 <ListItem
                                     component={NavLink}
@@ -79,7 +83,8 @@ export default function Header(){
                                 {title.toUpperCase()}
                                 </ListItem>
                             ))}
-                    </List>
+                        </List>
+                    )}
                 </Box>
             </Toolbar>
         </AppBar>
