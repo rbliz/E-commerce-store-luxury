@@ -1,4 +1,3 @@
-using System.Net.Http.Headers;
 using API.Entities;
 
 namespace API.Extensions

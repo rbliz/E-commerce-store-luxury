@@ -91,6 +91,15 @@ namespace API.Controllers
         // after setting this we need to tell the app how we are authenticating, so next we'll go the Program
         // to the AddAuthentication...
 
+        [Authorize]
+        [HttpGet("savedAddress")]
+        public async Task<ActionResult<UserAddress>> GetSavedAddress()
+        {
+            return await _userManager.Users
+                .Where(x => x.UserName == User.Identity.Name)
+                .Select(user => user.Address)
+                .FirstOrDefaultAsync();
+        }
 
         // TODO: create an extension method for this, something to extract it 
         private async Task<Basket> RetrieveBasket(string buyerId)
