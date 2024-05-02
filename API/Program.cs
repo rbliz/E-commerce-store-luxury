@@ -77,7 +77,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>(); // the scoped means that the service will be kept alive while the http request is processed then when finished it is disposed. The others are Trasient and Singleton
-
+builder.Services.AddScoped<PaymentService>();
 
 var app = builder.Build();
 

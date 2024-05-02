@@ -87,6 +87,7 @@ namespace API.Controllers
                 SubTotal = subtotal,
                 BuyerId = User.Identity.Name,
                 ShippingAddress = orderDto.ShippingAddress,
+                PaymentIntentId = basket.PaymentIntentId,
             };
 
             // now track it in EF

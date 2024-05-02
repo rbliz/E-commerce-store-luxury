@@ -11,7 +11,10 @@ namespace API.Entities
         public int Id { get; set; }
         public string BuyerId { get; set; }
         public List<BasketItem> Items { get; set; } = new(); //this initializes a new list when a basket is created
-    
+
+        public string PaymentIntentId { get; set; }
+        public string ClientSecret { get; set; }
+        
         // I am not doing anything in the Db here. When we call this method we're going to track the basket in memory and update it in memory. 
         //It's only when we save changes to the Db that we actually alter the Db.
         public void AddItem(Product product, int quantity)
