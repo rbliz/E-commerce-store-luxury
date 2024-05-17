@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER'
 
@@ -30,7 +31,7 @@ const initialState: CounterState = {
 
 // then our reducer function where we pass as arguments the state and the action
 // the action is what we dispatch to our reducer to change the state in some way
-export default function counterReducer(state = initialState, action:any){
+export default function counterReducer(state = initialState, _action:any){
     return state;
 }
 

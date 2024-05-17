@@ -63,12 +63,12 @@ export default function ProductDetails(){
     if(!product) return <NotFound />
 
     return(
-       <Grid container spacing={6} columns={{xs: 4, sm: 12, md: 12}}>
+       <Grid container spacing={6} columns={{xs: 4, sm: 12, md: 12}} sx={{mt: '120px'}}>
             <Grid item xs={6}>
                 <img 
                     src={product.pictureUrl} 
                     alt={product.name} 
-                    style={{width: '100%', borderRadius: '5px'}} />
+                    style={{width: '100%', borderRadius: '5px', marginTop: 10}} />
             </Grid>
             <Grid item xs={6}>
                 <Typography variant='h3' sx={{color: '#ffd9da'}}>{product.name}</Typography>

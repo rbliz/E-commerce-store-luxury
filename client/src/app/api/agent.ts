@@ -4,7 +4,7 @@ import { router } from "../router/Routes";
 import { PaginatedResponse } from "../models/pagination";
 import { store } from "../store/configureStore";
 
-axios.defaults.baseURL = "http://localhost:5000/api/";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true; // apart from the allowcredentials() in the api Program() we need this here in the client application to receive and set the cookies
 
 const sleep = ()=> new Promise(resolve=> setTimeout(resolve, 400))
@@ -23,7 +23,7 @@ axios.interceptors.request.use(config => {
 // using interceptors, on the way back from the api or on the way to it. Below I am using the response
 // thus what comes back from the server.  
 axios.interceptors.response.use(async response =>{
-    await sleep();
+    if(import.meta.env.DEV) await sleep(); // this is to run a fake delay only if we're in development environment
     const pagination = response.headers['pagination']; // needs to be in lowerCase even if in the browser is not
     if(pagination){
         response.data = new PaginatedResponse(response.data, JSON.parse(pagination));

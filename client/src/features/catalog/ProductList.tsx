@@ -13,9 +13,9 @@ export default function ProductList({products}: Props){
     const {productsLoaded} = useAppSelector(state => state.catalog)
     return(
     <>
-         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
             {products.map((product)=>(
-                <Grid item xs={2} sm={4} md={4} key={product.id}>
+                <Grid item xs={2} sm={2} md={4} key={product.id}>
                     {!productsLoaded?(
                         <ProductCardSkeleton />
                     ) : (

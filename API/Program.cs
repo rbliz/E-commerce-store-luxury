@@ -44,12 +44,32 @@ builder.Services.AddSwaggerGen(c=>{
 }); 
 
 
+string connString;
+if (builder.Environment.IsDevelopment())
+    connString = builder.Configuration.GetConnectionString("DefaultConnection");
+else
+{
+    // Use connection string provided at runtime by FlyIO.
+    var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
+    // Parse connection URL to connection string for Npgsql
+    connUrl = connUrl.Replace("postgres://", string.Empty);
+    var pgUserPass = connUrl.Split("@")[0];
+    var pgHostPortDb = connUrl.Split("@")[1];
+    var pgHostPort = pgHostPortDb.Split("/")[0];
+    var pgDb = pgHostPortDb.Split("/")[1];
+    var pgUser = pgUserPass.Split(":")[0];
+    var pgPass = pgUserPass.Split(":")[1];
+    var pgHost = pgHostPort.Split(":")[0];
+    var pgPort = pgHostPort.Split(":")[1];
 
+    connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
+}
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    opt.UseNpgsql(connString);
 });
+
 
 builder.Services.AddCors();
 
@@ -95,6 +115,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// to serve the client app from the api we need to specify middleware here before the useCors!
+app.UseDefaultFiles(); // this means it will look inside its default directory (wwwroot) for an index.html file
+app.UseStaticFiles();
+
+
 // we need to allowcredentials() to be able to pass cookies to/from the client domain to the server domain
 app.UseCors(opt =>
 {
@@ -105,6 +130,7 @@ app.UseAuthentication(); // the order of the middleware is important. first the 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToController("Index", "Fallback"); // to tell the api what to do when it finds a route it does not know about. Because now I have the client app hosted in the api
 
 var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<StoreContext>();

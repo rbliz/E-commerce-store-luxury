@@ -9,15 +9,30 @@ import { addBasketItemAsync } from "../basket/basketSlice";
 interface Props {
   product: Product;
 }
+const navStyles={
+    color: '#3e92cc', 
+    height: '1.75rem',
+    width: '.5rem',
+    typography:'h12',
+    background: 'linear-gradient(to right, #3e92cc 50%, #161a1d 50%)',
+    backgroundSize: '200% 100%',
+    backgroundPosition: 'right bottom',
+    transition: 'all .35s cubic-bezier(1, 0.68, 0.16, 0.9)',
+    '&:hover':{
+        color:'white',
+        borderRadius: '3px',
+        transition: 'all .35s cubic-bezier(1, 0.68, 0.16, 0.9)',
+        backgroundPosition: 'left bottom'
+    }
+   
+}
 
 //to view the productDetails I use a Link instead of NavLink because I don't need to keep seeing the catalog view
 export default function ProductCard({product}: Props){
     const {status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
 
-  
-
-    return(
+   return(
     <>
       <Card sx={{bgcolor: '#161a1d'}}>
           <CardHeader
@@ -49,12 +64,12 @@ export default function ProductCard({product}: Props){
               loading={status.includes('pendingAddItem' + product.id)} // if it's pending then it will show the loading indicator specific for the card
               onClick={()=> dispatch(addBasketItemAsync({productId: product.id}))} 
               size="small" 
-              sx={{color: '#3e92cc'}}
+              sx={navStyles}
               loadingIndicator={<CircularProgress sx={{color:"#fffaff"}} size={16} />}
             >
               Buy
             </LoadingButton>
-            <Button component={Link} to={`/catalog/${product.id}`} size="small" sx={{color: '#fffaff'}}>View</Button> 
+            <Button component={Link} to={`/catalog/${product.id}`} size="small" sx={{color: '#fffaff', '&:hover':{background: 'none'}}}>View</Button> 
           </CardActions>
       </Card>
     </>

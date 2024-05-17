@@ -1,6 +1,5 @@
 import Header from "./Header";
 import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import "./styles.css"
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +9,7 @@ import LoadingComponent from "./LoadingComponent";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
+import Footer from "./Footer";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -49,6 +49,7 @@ function App() {
       <Container>
         <Outlet />
       </Container>
+      <Footer />
     </ThemeProvider>
   )
 }

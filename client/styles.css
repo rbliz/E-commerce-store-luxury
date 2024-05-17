@@ -1,0 +1,91 @@
+@import "react-alice-carousel/lib/alice-carousel.css";
+
+/*-------------------------------------*/
+/*---- Hero Section -----------*/
+/*-------------------------------------*/
+.hero-section {
+    background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)),
+    url('public/images/homepage/heroSection.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin-top: 100px;
+}
+
+
+
+/*-------------------------------------*/
+/*---- Content Section -----------*/
+/*-------------------------------------*/
+
+.img-slider {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* margin-top: 50px; */
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+}
+
+/*-------------------------------------*/
+/*---- Content Section 2 -----------*/
+/*-------------------------------------*/
+
+.content-section-2 {
+    height: 100vh;
+    display: flex;
+    gap: 50px;
+    margin-top: 25px;
+}
+.info-content-section-2 {
+    display: block;
+    
+}
+#img-content-section-2 {
+    width: 50%;
+    
+}
+.img-section-2-container{
+        width: 50%;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(50vh);
+    visibility: hidden;
+    transition: opacity 3.5s ease-out, transform 2.2s ease-out;
+    will-change: opacity, visibility;
+}
+.fade-in.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+/*-------------------------------------*/
+/*---- @Media Queries -----------*/
+/*-------------------------------------*/
+
+@media(max-width: 500px) {
+    .hero-section {
+        text-align: center;
+    }
+    .content-section-2 {
+        text-align: center;
+        display: block;
+        height: 87vh;
+    }
+    .img-slider {
+        height: 45vh;
+    }
+    #img-content-section-2 {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+

@@ -1,8 +1,9 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { Product, ProductParams } from "../../app/models/product";
 import agent from "../../app/api/agent";
-import { RootState } from "@reduxjs/toolkit/query";
+// import { RootState } from "@reduxjs/toolkit";
 import { MetaData } from "../../app/models/pagination";
+import { RootState } from "../../app/store/configureStore";
 
 // we're gonna pass up our product parameters along with our request to the api and they're gonna
 // and they're gonna be passed as parameters to the list() below. But we need to provide first an interface

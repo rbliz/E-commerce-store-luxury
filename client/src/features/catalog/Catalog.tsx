@@ -8,6 +8,7 @@ import ProductSearch from "./ProductSearch";
 import RadioButtonGroup from "../../app/components/RadioButtonGroup";
 import CheckboxButtons from "../../app/components/CheckboxButtons";
 import AppPagination from "../../app/components/AppPagination";
+import MediaQuery from "react-responsive";
 
 // import "../../app/layout/styles.css"
 
@@ -36,7 +37,9 @@ useEffect(()=>{
 if(!filtersLoaded) return <LoadingComponent message="Loading Products..."/>
 
     return(
-        <Grid container columnSpacing={4}>
+    <>
+    <MediaQuery minWidth={600}>
+        <Grid container columnSpacing={4} sx={{mt: '130px'}}>
             <Grid item xs={3}>
                 <Paper sx={{mb: 2, bgcolor: '#161a1d'}}> 
                     <ProductSearch />
@@ -49,19 +52,20 @@ if(!filtersLoaded) return <LoadingComponent message="Loading Products..."/>
                     />
                </Paper>
                <Paper sx={{mb: 2, p: 2, bgcolor: '#161a1d'}}>
+                    <CheckboxButtons 
+                        items={types}
+                        checked={productParams.types}
+                        onChange={(items: string[]) => dispatch(setProductParams({types: items}))}
+                    />             
+               </Paper> 
+               <Paper sx={{mb: 2, p: 2, bgcolor: '#161a1d'}}>
                   <CheckboxButtons
                     items={brands}
                     checked={productParams.brands}
                     onChange={(items: string[]) => dispatch(setProductParams({brands: items}))}
                   />
                </Paper>
-               <Paper sx={{mb: 2, p: 2, bgcolor: '#161a1d'}}>
-                    <CheckboxButtons 
-                        items={types}
-                        checked={productParams.types}
-                        onChange={(items: string[]) => dispatch(setProductParams({types: items}))}
-                    />             
-               </Paper>                 
+                              
             </Grid>
                 <Grid item xs={9}>
                     <ProductList products={products} />
@@ -75,5 +79,53 @@ if(!filtersLoaded) return <LoadingComponent message="Loading Products..."/>
                     />}
                 </Grid>
         </Grid>
+        </MediaQuery>
+        <MediaQuery maxWidth={599}>
+            <Grid container columnSpacing={4} sx={{display: 'block', mt: '130px'}}>
+                <Grid>
+                    <Paper sx={{mb: 1, ml: 3, bgcolor: '#161a1d'}}> 
+                        <ProductSearch />
+                    </Paper>
+                </Grid>
+                <Grid sx={{display: 'flex', gap: 1, margin: '0 auto'}}>
+                   
+                    <Paper sx={{mb: 2, ml: 3, p: 2, bgcolor: '#161a1d'}}>
+                        <RadioButtonGroup
+                            selectedValue={productParams.orderBy}
+                            options={sortOptions}
+                            onChange={(e) => dispatch(setProductParams({orderBy: e.target.value}))}
+                            
+                        />
+                    </Paper>
+                    <Paper sx={{mb: 2, p: 2, bgcolor: '#161a1d'}}>
+                        <CheckboxButtons 
+                            items={types}
+                            checked={productParams.types}
+                            onChange={(items: string[]) => dispatch(setProductParams({types: items}))}
+                        />             
+                    </Paper> 
+                    <Paper sx={{mb: 2, p: 2, bgcolor: '#161a1d'}}>
+                        <CheckboxButtons
+                            items={brands}
+                            checked={productParams.brands}
+                            onChange={(items: string[]) => dispatch(setProductParams({brands: items}))}
+                        />
+                    </Paper>
+                                    
+                </Grid>           
+                <Grid item xs={9} margin='0 auto'>
+                    <ProductList products={products} />
+                </Grid>
+                <Grid item xs={3} />
+                <Grid item xs={12} sx={{mb:2}}>
+                    {metaData &&
+                    <AppPagination
+                        metaData={metaData} // to make the warning go away, add the null (!metaData) to display the loading....
+                        onPageChange={(page: number) => dispatch(setPageNumber({pageNumber: page}))}
+                    />}
+                </Grid>
+            </Grid>
+        </MediaQuery>
+    </>
     )
 }
