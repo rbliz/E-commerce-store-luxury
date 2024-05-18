@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 export default function ServerError(){
     const {state} = useLocation();
     return(
-        <Container component={Paper}>
+        <Container sx={{mt: 25}} component={Paper}>
             {state?.error ?(
                     <>
                         <Typography variant="h3" color='secondary' gutterBottom>

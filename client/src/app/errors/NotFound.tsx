@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function NotFound(){
     return(
-        <Container component={Paper} sx={{height: 400}}>
+        <Container component={Paper} sx={{height: 400, mt: 25}}>
             <Typography gutterBottom variant="h3">Oops we couldn't find what you are looking for</Typography>
             <Divider />
             <Button fullWidth component={Link} to='/catalog'>Go back to shop</Button>

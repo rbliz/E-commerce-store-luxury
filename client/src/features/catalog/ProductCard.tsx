@@ -61,7 +61,7 @@ export default function ProductCard({product}: Props){
           </CardContent>
           <CardActions>
             <LoadingButton 
-              loading={status.includes('pendingAddItem' + product.id)} // if it's pending then it will show the loading indicator specific for the card
+              loading={status === ('pendingAddItem' + product.id)} // if it's pending then it will show the loading indicator specific for the card
               onClick={()=> dispatch(addBasketItemAsync({productId: product.id}))} 
               size="small" 
               sx={navStyles}
