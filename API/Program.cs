@@ -67,7 +67,7 @@ else
 }
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
-    opt.UseNpgsql(connString, npgsqlOptionsAction => npgsqlOptionsAction.EnableRetryOnFailure());
+    opt.UseNpgsql(connString);
 });
 
 
