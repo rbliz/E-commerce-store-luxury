@@ -117,6 +117,14 @@ export const catalogSlice = createSlice({
         },
         resetProductParams: (state) => {
             state.productParams = initParams();
+        },
+        setProduct: (state, action) => {
+            productsAdapter.upsertOne(state, action.payload);
+            state.productsLoaded = false // this will trigger the useEffect in the useProducts() hook to fetch the latest batch of products from the api. This way the pagination in the client is corrected
+        },
+        removeProduct: (state, action) => {
+            productsAdapter.removeOne(state, action.payload);
+            state.productsLoaded = false
         }
     },
     extraReducers: (builder =>{
@@ -161,7 +169,7 @@ export const catalogSlice = createSlice({
 // with this product selectors I am able to go and get data from the store
 export const productSelectors = productsAdapter.getSelectors((state: RootState) => state.catalog);
 
-export const {setProductParams, resetProductParams, setMetaData, setPageNumber} = catalogSlice.actions;
+export const {setProductParams, resetProductParams, setMetaData, setPageNumber, setProduct, removeProduct} = catalogSlice.actions;
 
 
 // setPageNumber to correct pagination issue when filtering after advancing in the pages:

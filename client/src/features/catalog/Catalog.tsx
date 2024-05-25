@@ -1,14 +1,14 @@
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import ProductList from "./ProductList";
-import { useEffect } from "react";
-import { fetchFilters, fetchProductsAsync, productSelectors, setPageNumber, setProductParams } from "./catalogSlice";
+import { setPageNumber, setProductParams } from "./catalogSlice";
 import { Grid, Paper } from "@mui/material";
 import ProductSearch from "./ProductSearch";
 import RadioButtonGroup from "../../app/components/RadioButtonGroup";
 import CheckboxButtons from "../../app/components/CheckboxButtons";
 import AppPagination from "../../app/components/AppPagination";
 import MediaQuery from "react-responsive";
+import useProducts from "../../app/hooks/useProducts";
 
 // import "../../app/layout/styles.css"
 
@@ -20,21 +20,11 @@ const sortOptions = [
 ]
 
 export default function Catalog(){
-    const products = useAppSelector(productSelectors.selectAll);
+    const {products, filtersLoaded, brands, types, metaData} = useProducts();
     const dispatch = useAppDispatch();
-    const {productsLoaded, filtersLoaded, brands, types, productParams, metaData} = useAppSelector(state => state.catalog);
+    const { productParams } = useAppSelector(state => state.catalog);
 
-// we do not loose redux state when we stay within our app but load a different component, as opposed to local state which we loose as soon the component is destroyed
-useEffect(()=>{
-    if(!productsLoaded) dispatch(fetchProductsAsync());
-}, [productsLoaded, dispatch])
-
-// I will use a different useEffect to avoid the double loading of the products
-useEffect(()=>{
-    if(!filtersLoaded) dispatch(fetchFilters());
-}, [filtersLoaded, dispatch])
-
-if(!filtersLoaded) return <LoadingComponent message="Loading Products..."/>
+    if(!filtersLoaded) return <LoadingComponent message="Loading Products..."/>
 
     return(
     <>

@@ -95,6 +95,14 @@ export default function MobileToolbar(props: Props){
               </ListItemButton>
             </ListItem>
           ))}
+          {user && user.roles?.includes('Admin') &&
+          <ListItem
+                  component={NavLink}
+                  to={'/inventory'}
+                  sx={navStyles}
+          >
+          INVENTORY
+          </ListItem>}
         </List>
         {user ? (
                 <SignedInMenu />
