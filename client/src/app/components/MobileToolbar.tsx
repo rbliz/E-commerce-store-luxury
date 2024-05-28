@@ -77,7 +77,7 @@ export default function MobileToolbar(props: Props){
     const drawer = (
       <Box 
         onClick={handleDrawerToggle} 
-        sx={{textAlign: 'center', bgcolor: 'black', color: 'white'}}>
+        sx={{textAlign: 'center', backgroundImage: 'linear-gradient(-391deg, #ffd9da, black, black)', color: 'white', height: '100vh'}}>
         <Typography variant="h6" sx={{ my: 2 }}>
           MENU
         </Typography>
@@ -101,7 +101,7 @@ export default function MobileToolbar(props: Props){
                   to={'/inventory'}
                   sx={navStyles}
           >
-          INVENTORY
+            INVENTORY
           </ListItem>}
         </List>
         {user ? (
@@ -143,7 +143,7 @@ export default function MobileToolbar(props: Props){
                 component={NavLink}
                 to='/'
             >
-                Fleur Caroline
+                Margaux Durand
             </Typography>
             </Toolbar>
         </AppBar>

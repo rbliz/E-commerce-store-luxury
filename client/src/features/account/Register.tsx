@@ -46,7 +46,7 @@ export default function Register() {
 
 return (
     <ThemeProvider theme={theme}>
-      <Grid container component={Paper}  sx={{ height: '100vh', mb: 4, mt: '130px'}}>
+      <Grid container component={Paper}  sx={{ height: '80vh', mb: 4, mt: '130px'}}>
         <CssBaseline />
         <Grid
           item
@@ -54,7 +54,7 @@ return (
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1551298213-de5c034f5d50?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODN8fGx1eHVyeXxlbnwwfHwwfHx8MA%3D%3D)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1622020886177-239ee6e69b39?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fGx1eHVyeSUyMGludGVyaW9yfGVufDB8MHwwfHx8MA%3D%3D)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -62,7 +62,7 @@ return (
             backgroundPosition: 'center',
           }}
         />
-        <Grid item sx={{bgcolor: '#161a1d', color: '#fffaff'}} xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item sx={{bgcolor: '#fffaff', color: 'black'}} xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -95,9 +95,9 @@ return (
                 error={!!errors.username} // this casts the username to a boolean
                 helperText={errors?.username?.message as string}
                 autoFocus
-                InputLabelProps={{sx:{color: '#fffaff'}}}
-                inputProps={{style:{color:'#fffaff'}}}
-                sx={{border: '0.5px solid #fffaff'}}
+                InputLabelProps={{sx:{color: 'black'}}}
+                inputProps={{style:{color:'black'}}}
+                sx={{border: '0.5px solid black'}}
               />
                <TextField
                 margin="normal"
@@ -112,9 +112,9 @@ return (
                 })}
                 error={!!errors.email} // this casts the username to a boolean
                 helperText={errors?.email?.message as string}
-                InputLabelProps={{sx:{color: '#fffaff'}}}
-                inputProps={{style:{color:'#fffaff'}}}
-                sx={{border: '0.5px solid #fffaff'}}
+                InputLabelProps={{sx:{color: 'black'}}}
+                inputProps={{style:{color:'black'}}}
+                sx={{border: '0.5px solid black'}}
               />
               <TextField
                 margin="normal"
@@ -130,9 +130,9 @@ return (
                 })}
                 error={!!errors.password}
                 helperText={errors?.password?.message as string}
-                InputLabelProps={{sx:{color: '#fffaff'}}}
-                inputProps={{style:{color:'#fffaff'}}}
-                sx={{border: '0.5px solid #fffaff'}}
+                InputLabelProps={{sx:{color: 'black'}}}
+                inputProps={{style:{color:'black'}}}
+                sx={{border: '0.5px solid black'}}
               />
               {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

@@ -10,7 +10,8 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    margin-top: 100px;
+    margin-top: 105px;
+
 }
 
 
@@ -37,22 +38,22 @@ img {
 /*-------------------------------------*/
 
 .content-section-2 {
-    height: 100vh;
+    height: 65vh;
     display: flex;
     gap: 50px;
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 .info-content-section-2 {
     display: block;
-    
+    width: 100%;
+    margin: 0 auto;
 }
 #img-content-section-2 {
-    width: 50%;
+    width: 100%;
     
 }
-.img-section-2-container{
-        width: 50%;
-}
+
 .fade-in {
     opacity: 0;
     transform: translateY(50vh);
@@ -66,6 +67,23 @@ img {
     visibility: visible;
 }
 
+
+
+.avatar-product-card-img {
+    width: 25%;
+}
+
+
+
+
+/*-------------------------------------*/
+/*---- Checkout Page -----------*/
+/*-------------------------------------*/
+
+.checkout-container {
+    margin-top: 120px;
+}
+
 /*-------------------------------------*/
 /*---- @Media Queries -----------*/
 /*-------------------------------------*/
@@ -73,11 +91,14 @@ img {
 @media(max-width: 500px) {
     .hero-section {
         text-align: center;
+        
     }
+   
     .content-section-2 {
         text-align: center;
+        width: 100%;
         display: block;
-        height: 87vh;
+        height: 110vh;
     }
     .img-slider {
         height: 45vh;

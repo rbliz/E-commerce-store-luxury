@@ -20,7 +20,7 @@ import { signInUser } from './accountSlice';
 const theme= createTheme({
     palette:{
      background: {
-       default: '#0b090a'
+       default: '#161a1d'
      }
     }
    })
@@ -46,7 +46,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component={Paper}  sx={{ height: '100vh', mb: 4, mt: '130px'}}>
+      <Grid container component={Paper}  sx={{ height: '75vh', mb: 4, mt: '130px'}}>
         <CssBaseline />
         <Grid
           item
@@ -54,7 +54,7 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1599554241958-0c5f1a01aa39?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGx1eHVyeSUyMHN0b3JlfGVufDB8fDB8fHww)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1443884590026-2e4d21aee71c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTgwfHxsdXh1cnklMjBzdG9yZXxlbnwwfDB8MHx8fDA%3D)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -62,7 +62,7 @@ export default function Login() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item sx={{bgcolor: '#161a1d', color: '#fffaff'}} xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item sx={{bgcolor: '#fffaff', color: 'black'}} xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -87,9 +87,9 @@ export default function Login() {
                 error={!!errors.username} // this casts the username to a boolean
                 helperText={errors?.username?.message as string}
                 autoFocus
-                InputLabelProps={{sx:{color: '#fffaff'}}}
-                inputProps={{style:{color:'#fffaff'}}}
-                sx={{border: '0.5px solid #fffaff'}}
+                InputLabelProps={{sx:{color: 'black'}}}
+                inputProps={{style:{color:'black'}}}
+                sx={{border: '0.5px solid black'}}
               />
               <TextField
                 margin="normal"
@@ -99,9 +99,9 @@ export default function Login() {
                 {...register('password', {required: 'Password is required'})}
                 error={!!errors.password}
                 helperText={errors?.password?.message as string}
-                InputLabelProps={{sx:{color: '#fffaff'}}}
-                inputProps={{style:{color:'#fffaff'}}}
-                sx={{border: '0.5px solid #fffaff'}}
+                InputLabelProps={{sx:{color: 'black'}}}
+                inputProps={{style:{color:'black'}}}
+                sx={{border: '0.5px solid black'}}
               />
               {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
