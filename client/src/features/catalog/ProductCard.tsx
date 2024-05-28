@@ -31,14 +31,14 @@ const navStyles={
 export default function ProductCard({product}: Props){
     const {status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
-
+    // {product.name.charAt(0).toUpperCase()}
    return(
     <>
       <Card sx={{bgcolor: '#161a1d'}}>
           <CardHeader
               avatar={
                   <Avatar sx={{bgcolor: '#89023e'}}>
-                      {product.name.charAt(0).toUpperCase()}
+                      <img id="avatar-product-card-img" src="../images/products/logo_luxuryStore.png" />
                   </Avatar>
               }
             title={product.name}

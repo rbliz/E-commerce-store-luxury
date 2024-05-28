@@ -12,6 +12,7 @@ import agent from "../../app/api/agent";
 import { useAppDispatch } from "../../app/store/configureStore";
 import { setProduct } from "../catalog/catalogSlice";
 import { LoadingButton } from "@mui/lab";
+import MediaQuery from "react-responsive";
 
 interface Props {
     product?: Product;
@@ -77,14 +78,26 @@ export default function ProductForm({product, cancelEdit}: Props) {
                     <AppTextInput multiline={true} rows={4} control={control} name='description' label='Description' />
                 </Grid>
                 <Grid item xs={12}>
-                    <Box display="flex" justifyContent="space-between" alignItems="center">
-                        <AppDropzone control={control} name='file' />
-                        {watchFile ? (
-                            <img src={watchFile.preview} alt="preview" style={{maxHeight: 200, width: '50%'}} />
-                        ) : (
-                            <img src={product?.pictureUrl} alt={product?.name} style={{maxHeight: 200, width: '50%'}} />
-                        )}
-                    </Box>
+                    <MediaQuery maxWidth={599}>
+                        <Box display="block" justifyContent="space-between" alignItems="center">
+                            <AppDropzone control={control} name='file'/>
+                            {watchFile ? (
+                                <img src={watchFile.preview} alt="preview" style={{maxHeight: 200, width: '50%', marginTop: 5}} />
+                            ) : (
+                                <img src={product?.pictureUrl} alt={product?.name} style={{maxHeight: 200, width: '50%', marginTop: 5}} />
+                            )}
+                        </Box>
+                    </MediaQuery>
+                    <MediaQuery minWidth={600}>
+                        <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <AppDropzone control={control} name='file' />
+                            {watchFile ? (
+                                <img src={watchFile.preview} alt="preview" style={{maxHeight: 200, width: '50%'}} />
+                            ) : (
+                                <img src={product?.pictureUrl} alt={product?.name} style={{maxHeight: 200, width: '50%'}} />
+                            )}
+                        </Box>
+                    </MediaQuery>
                 </Grid>
             </Grid>
             <Box display='flex' justifyContent='space-between' sx={{mt: 3}}>

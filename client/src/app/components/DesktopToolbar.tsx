@@ -72,7 +72,7 @@ export default function DesktopToolbar(){
                     component={NavLink} 
                     to='/'
                     >
-                    Fleur Caroline
+                    Margaux Durand
                 </Typography>
                 <List sx={{display: 'flex', justifyContent: 'space-between'}}>
                     {midLinks.map(({title, path})=>(

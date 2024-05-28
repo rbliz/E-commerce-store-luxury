@@ -22,15 +22,28 @@ export default function Footer(){
             >
                 <Typography 
                     variant='h6' 
-                    sx={{fontSize: '10px', textDecoration: 'none', color: 'white', fontFamily: 'inherit'}} 
+                    sx={
+                        {
+                         fontSize: '10px',
+                         textDecoration: 'none',
+                         color: 'white',
+                         fontFamily: 'inherit',
+                         textJustify: 'inter-word',
+                         textAlign: 'justify',
+                         flexWrap: 'wrap',
+                         maxWidth: 175,
+                         mt: 5
+                        }
+                    } 
                     component={NavLink} 
                     to='/'
                     >
-                    COMPANY Lorem Ipsis Verbum 
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum
+                    Margaux Durand -
+
+                    Av. 5, apt 4 Entresuelo
+                    80897 Barcelona
+                    customer@md.com
+                    
                 </Typography>
                 <Typography 
                     variant='h6' 

@@ -17,7 +17,7 @@ export default function BasketTable({items, isBasket = true}: Props){
     const dispatch = useAppDispatch();
     
     return(
-        <TableContainer component={Paper}>
+        <TableContainer sx={{mt: 15}} component={Paper}>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
@@ -37,18 +37,18 @@ export default function BasketTable({items, isBasket = true}: Props){
               >
                 <TableCell component="th" scope="row">
                   <Box display="flex" alignItems="center">
-                      <img src={item.pictureUrl} alt={item.name} style={{height: 50, marginRight: 20}} />
+                      <img src={item.pictureUrl} alt={item.name} style={{height: 50, marginRight: 20, width: '25%'}} />
                       <span>{item.name}</span>
                   </Box>
                 </TableCell>
                 <TableCell align="right">{currencyFormat(item.price)}</TableCell>
-                <TableCell align="center">
+                <TableCell align="center" sx={{width: '190px'}}>
                     {isBasket &&
                     <LoadingButton 
                         loading={status === 'pendingRemoveItem' + item.productId + 'rem'} 
                         onClick={()=> dispatch(removeBasketItemAsync({
                           productId: item.productId, quantity: 1, name: 'rem'}))} 
-                        sx={{color: "#89023e", backgroundColor: "#ffd9da", marginRight: 1}}
+                        sx={{color: "#89023e", backgroundColor: "#ffd9da", marginRight: 1, padding: 0}}
                     >
                       <Remove />
                     </LoadingButton>}
@@ -57,7 +57,7 @@ export default function BasketTable({items, isBasket = true}: Props){
                     <LoadingButton 
                         loading={status === 'pendingAddItem' + item.productId} 
                         onClick={()=> dispatch(addBasketItemAsync({productId: item.productId}))} 
-                        sx={{color: "#ffd9da", backgroundColor: "#89023e", marginLeft: 1}}
+                        sx={{color: "#89023e", backgroundColor: "#ffd9da", marginLeft: 1, padding: 0}}
                     >
                       <Add />
                     </LoadingButton>}

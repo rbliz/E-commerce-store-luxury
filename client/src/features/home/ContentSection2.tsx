@@ -19,7 +19,7 @@ export default function ContentSection2(){
         '&:hover':{
             color:'black',
             // borderBottom: '3px solid #ffd9da',
-            borderRadius: '1px',
+            borderRadius: '3px',
             transition: 'all .35s cubic-bezier(1, 0.68, 0.16, 0.9)',
             backgroundPosition: 'left bottom'
         },
@@ -36,15 +36,23 @@ export default function ContentSection2(){
         <div className="content-section-2">
             <FadeIn>
             <div className="info-content-section-2">
-                <Typography variant="h6" sx={{color: '#fffaff', mb: '20px'}}>
-                    Content section 2
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum Lorem Ipsis Verbum
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum Lorem Ipsis Verbum
-                    Lorem Ipsis Verbum Lorem Ipsis Verbum Lorem Ipsis Verbum
+                <Typography 
+                    variant="h6" 
+                    sx={{color: '#fffaff', mb: '30px', textAlign: 'justify', textJustify: 'inter-word'}}
+                >
+                    The extraordinary future of tomorrow is crafted today.
+                    Margaux Durand's mission is to be committed to create a meaningful tomorrow 
+                    through kindness, generosity and sharing with dedication to the art and savoir-faire.
+                    With a profound belief that life can be elevated by
+                    harnessing the magnificent beauty, Margaux Durand aims to 
+                    uncover, foster and treasure the limitless potential and unique beauty
+                    of every piece passionately designed.
                 </Typography>
-                <Link component={NavLink} to='/about' sx={navStyles}>
-                    Learn More
-                </Link>
+                
+                    <Link component={NavLink} to='/about' sx={navStyles}>
+                        Learn More
+                    </Link>
+                
             </div>
             </FadeIn>
             <FadeIn>

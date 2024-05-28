@@ -142,6 +142,7 @@ export default function CheckoutPage() {
     }
 
     return (
+        <div className="checkout-container">
         <FormProvider {...methods}>
             <Paper variant="outlined" sx={{my: {xs: 3, md: 6}, p: {xs: 2, md: 3}}}>
                 <Typography component="h1" variant="h4" align="center">
@@ -199,6 +200,7 @@ export default function CheckoutPage() {
                 </>
             </Paper>
         </FormProvider>
+        </div>
     );
 }
 
