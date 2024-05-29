@@ -1,6 +1,6 @@
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import NotFound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { currencyFormat } from "../../app/util/util";
@@ -71,7 +71,10 @@ export default function ProductDetails(){
                     style={{width: '100%', borderRadius: '5px', marginTop: 10}} />
             </Grid>
             <Grid item xs={6}>
+                <Grid container display='flex' justifyContent='space-between'>
                 <Typography variant='h3' sx={{color: '#ffd9da'}}>{product.name}</Typography>
+                <Link style={{color: 'whitesmoke', alignSelf: 'center'}} to='/catalog' relative='path'>&larr; Back</Link>
+                </Grid>
                 <Divider sx={{mb: 2, bgcolor:'#89023e'}} />
                 <Typography variant="h4" sx={{color:'#ea638c'}}>{currencyFormat(product.price)}</Typography>
                 <TableContainer>
