@@ -4,8 +4,12 @@ namespace API.Extensions
 {
     public static class ProductExtensions // we do not want to create an instance of this class therefore it is a static one
     {
-        // the idea of an extension method is that we make another method available for the IQueryable, methods which are not there if we try to call them with the .dot 
-        public static IQueryable<Product> Sort(this IQueryable<Product> query, string orderBy) // inside the method we specify what we are extending
+        // the idea of an extension method is that we make another method available for the IQueryable,
+        // methods which are not there if we try to call them with the .dot 
+
+
+        // inside the method we specify what we are extending
+        public static IQueryable<Product> Sort(this IQueryable<Product> query, string orderBy) 
         {
             if(string.IsNullOrWhiteSpace(orderBy)) return query.OrderBy(p => p.Name);
               

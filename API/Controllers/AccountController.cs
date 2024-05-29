@@ -88,6 +88,7 @@ namespace API.Controllers
                 Basket = userBasket?.MapBasketToDto()
             };
         }
+        
         // after setting this we need to tell the app how we are authenticating, so next we'll go the Program
         // to the AddAuthentication...
 

@@ -3,6 +3,7 @@
 /*-------------------------------------*/
 /*---- Hero Section -----------*/
 /*-------------------------------------*/
+
 .hero-section {
     background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)),
     url('public/images/homepage/heroSection.jpg');
@@ -13,8 +14,6 @@
     margin-top: 105px;
 
 }
-
-
 
 /*-------------------------------------*/
 /*---- Content Section -----------*/
@@ -72,9 +71,6 @@ img {
 .avatar-product-card-img {
     width: 25%;
 }
-
-
-
 
 /*-------------------------------------*/
 /*---- Checkout Page -----------*/

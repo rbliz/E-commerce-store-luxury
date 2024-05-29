@@ -14,9 +14,6 @@ import { useAppDispatch } from '../../app/store/configureStore';
 import { signInUser } from './accountSlice';
 
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const theme= createTheme({
     palette:{
      background: {

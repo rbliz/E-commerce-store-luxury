@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 // 2. in the HttpPost, return CreatedAtRoute("route name", object value) with the httpget name and the object
 // 3. extract the object returned of the httpget request to a method
 // 4. the httppost Task ActionResult will have the value of an instane of the BasketDto
+// ...........................................................................................................
 
 namespace API.Controllers
 {
@@ -23,7 +24,7 @@ namespace API.Controllers
         }
 
         // I am gonna identify the basket fetched with a cookie with a buyerId which is created
-        //when the user creates a new Basket, then the cookie(buyerId) is sent back and forth 
+        // when the user creates a new Basket, then the cookie(buyerId) is sent back and forth 
         // between the client's browser and the server
 
         [HttpGet(Name = "GetBasket")]
@@ -37,8 +38,7 @@ namespace API.Controllers
         }
 
        
-
-
+       
         [HttpPost] 
         // we're getting the productId and the quantity from the query string
         // for ex: api/basket?productId=1&quantity=2

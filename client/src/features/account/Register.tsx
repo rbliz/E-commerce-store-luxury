@@ -13,10 +13,6 @@ import { LoadingButton } from '@mui/lab';
 import agent from '../../app/api/agent';
 import { toast } from 'react-toastify';
 
-
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const theme= createTheme({
     palette:{
      background: {
