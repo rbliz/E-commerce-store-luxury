@@ -14,7 +14,8 @@ namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
-        // so I am using dependency injection so I can have the StoreContext here so that I've got access to the products table in my db
+        // so I am using dependency injection so I can have the StoreContext here so that I've got access
+        // to the products table in my db
         private readonly StoreContext _context;   
         private readonly IMapper _mapper;
         private readonly ImageService _imageService;
@@ -28,7 +29,9 @@ namespace API.Controllers
 
         // so now I am gonna create endpoints, one to Get a List and one to Get a single product
         // for Performance I will introduce deferred execution using AsQueryable(). 
-        // I will use Extension Methods for the queries and take the queries logic out of the controller. Another way would be the Repository patterns
+        // I will use Extension Methods for the queries and take the queries logic out of the controller.
+        // Another way would be the Repository patterns
+        
         [HttpGet]
         // since we now have an obj passed as parameters, the API controller
         // presumes that we're gonna get these values from the body of our request

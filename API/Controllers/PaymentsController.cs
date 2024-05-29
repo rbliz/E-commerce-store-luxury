@@ -75,6 +75,7 @@ namespace API.Controllers
             return new EmptyResult(); 
         }
     }
+    
     // If this works it will return a 200 OK response with the basket inside there.
     
     // we are not gonna be out to get a payment intent directly from stripe using our API and create a route

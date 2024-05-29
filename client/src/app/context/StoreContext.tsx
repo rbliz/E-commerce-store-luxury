@@ -1,8 +1,8 @@
-// I am wrapping the app with a component in order to have context available to apply everywhere in the app
-// So When we're using our context we're able to access what is specified in the interface
-
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { Basket } from "../models/basket";
+
+// I am wrapping the app with a component in order to have context available to apply everywhere in the app
+// So When we're using our context we're able to access what is specified in the interface
 
 interface StoreContextValue
 {
@@ -44,6 +44,7 @@ export function StoreProvider({children}: PropsWithChildren<unknown>){
             return {...prevState!, items}
         })
     }
+    
     return(
         <StoreContext.Provider value={{basket, setBasket, removeItem}}>
             {children}

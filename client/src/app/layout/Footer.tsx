@@ -2,10 +2,6 @@ import { AppBar, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 // import { useStoreContext } from "../context/StoreContext";
 
-
-
-
-
 // by using the component prop in the <ListItem> from Material UI I am able to use the NavLink functionality
 export default function Footer(){
     

@@ -10,8 +10,6 @@ import AppPagination from "../../app/components/AppPagination";
 import MediaQuery from "react-responsive";
 import useProducts from "../../app/hooks/useProducts";
 
-// import "../../app/layout/styles.css"
-
 
 const sortOptions = [
     {value: 'name', label: 'Alphabetical'},
