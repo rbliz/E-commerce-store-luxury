@@ -1,4 +1,3 @@
-using System.Text.Json;
 using API.Data;
 using API.DTOs;
 using API.Entities;
@@ -84,7 +83,8 @@ namespace API.Controllers
             if(productDto.File != null)
             {
                 var imageResult = await _imageService.AddImageAsync(productDto.File);
-                if(imageResult.Error != null)
+
+                    if(imageResult.Error != null)
                     return BadRequest(new ProblemDetails{Title = imageResult.Error.Message});
                 
                 product.PictureUrl = imageResult.SecureUrl.ToString();
@@ -114,10 +114,11 @@ namespace API.Controllers
             if(productDto.File != null)
             {
                 var imageResult = await _imageService.AddImageAsync(productDto.File);
-                if(imageResult.Error!= null)
+
+                    if(imageResult.Error!= null)
                     return BadRequest(new ProblemDetails{Title = imageResult.Error.Message});
                 
-                if(!string.IsNullOrEmpty(product.PublicId))
+                    if(!string.IsNullOrEmpty(product.PublicId))
                     await _imageService.DeleteImageAsync(product.PublicId);
             
                 product.PictureUrl = imageResult.SecureUrl.ToString();
@@ -136,9 +137,10 @@ namespace API.Controllers
         public async Task<ActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            if(product == null) return NotFound();
 
-            if(!string.IsNullOrEmpty(product.PublicId))
+                if(product == null) return NotFound();
+
+                if(!string.IsNullOrEmpty(product.PublicId))
                 await _imageService.DeleteImageAsync(product.PublicId);
             
             _context.Products.Remove(product);

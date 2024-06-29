@@ -8,7 +8,6 @@ interface Props{
     onChange: (items: string[]) => void; // this is what we're gonna return to the parent component and send to the redux state
 }
 export default function CheckboxButtons({items, checked, onChange}: Props){
-
     const [checkedItems, setCheckedItems] = useState(checked || []);
 
     function handleChecked(value: string){

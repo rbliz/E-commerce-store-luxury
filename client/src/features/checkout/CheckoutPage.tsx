@@ -15,8 +15,6 @@ import { CardNumberElement, useElements, useStripe } from "@stripe/react-stripe-
 
 const steps = ['Shipping address', 'Review your order', 'Payment details'];
 
-
-
 export default function CheckoutPage() {
     // I am setting state locally in this case to use the Orders methods, instead of creating an reducer
     const [orderNumber, setOrderNumber] = useState(0); // this is all we get in return from the api, when we create an order, an integer

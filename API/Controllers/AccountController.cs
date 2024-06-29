@@ -104,16 +104,17 @@ namespace API.Controllers
 
         // TODO: create an extension method for this, something to extract it 
         private async Task<Basket> RetrieveBasket(string buyerId)
-            {
-                if(string.IsNullOrEmpty(buyerId)){
+        {
+            if(string.IsNullOrEmpty(buyerId))
+                {
                     Response.Cookies.Delete("buyerId");
                     return null;
                 }
                 //this gets the basket with the items with the product info
-                return await _context.Baskets
-                    .Include(i => i.Items) // this does not include the product info
-                    .ThenInclude(p => p.Product)
-                    .FirstOrDefaultAsync(x => x.BuyerId == buyerId); // this does not include the basket items
-            }
+            return await _context.Baskets
+                .Include(i => i.Items) // this does not include the product info
+                .ThenInclude(p => p.Product)
+                .FirstOrDefaultAsync(x => x.BuyerId == buyerId); // this does not include the basket items
+        }
     }
 }

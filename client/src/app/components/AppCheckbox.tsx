@@ -13,17 +13,17 @@ interface Props extends UseControllerProps
 
 export default function AppCheckbox(props: Props){
     const {field} = useController({...props, defaultValue: false}) // ...props means to spread the props across into our usecontroller hook
-    return(
-        <FormControlLabel 
-            control={
-                <Checkbox
-                    disabled={props.disabled}
-                    {...field} // this includes the onChange etc...
-                    checked = {field.value}
-                    color="secondary"
-                />
-            }
+        return(
+            <FormControlLabel 
+                    control={
+                        <Checkbox
+                            disabled={props.disabled}
+                            {...field} // this includes the onChange etc...
+                            checked = {field.value}
+                            color="secondary"
+                        />
+                    }
             label={props.label}
-        />
-    )
+            />
+        )
 }
