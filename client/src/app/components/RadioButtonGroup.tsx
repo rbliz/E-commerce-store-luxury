@@ -18,7 +18,6 @@ export default function RadioButtonGroup({options, onChange, selectedValue}: Pro
         <FormControl component="fieldset">
             <RadioGroup onChange={onChange} value={selectedValue}>
                 {options.map(({value, label}) => (
-                        
                             <FormControlLabel
                                 control={
                                     <Radio 
@@ -26,24 +25,21 @@ export default function RadioButtonGroup({options, onChange, selectedValue}: Pro
                                             {
                                                 '&.Mui-checked': {
                                                     '&, & + .MuiFormControlLabel-label':{color: '#ffd9da',
-                                                }},
-                                                    '&:hover': {
-                                                        color: '#ffd9da'
-                                                    },
-                                                    color: 'white',
+                                                    }
+                                                },
+                                                '&:hover': {
+                                                                color: '#ffd9da'
+                                                            },
+                                                            color: 'white',
 
                                             }
                                         } 
                                     />
-                                   
                                 } 
                                 value={value} label={label} key={value} 
                                 sx={{color: 'white', '&:hover': {color: '#ffd9da'}}}
                             />
-                 
-
                         )
-
                     )
                 }
             </RadioGroup>
