@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for luxurystore on 2024-05-17T19:52:11+01:00
+# fly.toml app configuration file generated for luxurystore on 2024-08-28T15:45:18+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -14,18 +14,14 @@ primary_region = 'mad'
   StripeSettings__PublishableKey="pk_test_51P9n8pF5fv5uP7z4133ecoqs1yck7boP9wtllGNjsRWztObyH3jRdcC3s73ZwWES7Ie5vn3d7GRfWLXUOUoYU1kV00MSBOzMrG"
   Cloudinary__CloudName="ddjpbs1jk"
   Cloudinary__ApiKey="361294174979923"
-
-
+  
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-
+  size = 'shared-cpu-1x'
