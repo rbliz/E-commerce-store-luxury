@@ -69,7 +69,7 @@ else
 }
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
-    opt.UseNpgsql(connString);
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 
